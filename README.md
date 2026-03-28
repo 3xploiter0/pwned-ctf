@@ -70,15 +70,6 @@ That means the structure is intentionally practical rather than uniform.
 - binaries, firmware, APK extraction output, images, and archives
 - Docker or source snapshots for web challenges when available
 
-## Publishing Note
-
-This repository includes raw challenge material and locally generated artifacts. Before pushing publicly, review it for:
-
-- flags or recovered answers
-- credentials, dumps, or tokens
-- virtual environments, build output, and decompiler output
-- copyrighted or redistribution-restricted challenge files
-
 ## Why This Exists
 
 I use this repo to keep a searchable history of solved challenges, failed attempts, tooling experiments, and reference material across multiple CTF ecosystems. It is meant to be useful first and tidy second.
