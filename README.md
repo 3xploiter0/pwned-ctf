@@ -73,7 +73,3 @@ That means the structure is intentionally practical rather than uniform.
 ## Why This Exists
 
 I use this repo to keep a searchable history of solved challenges, failed attempts, tooling experiments, and reference material across multiple CTF ecosystems. It is meant to be useful first and tidy second.
-
-## License
-
-No license has been added yet. If this repository is going public, add one before publishing if you want to define reuse terms clearly.
