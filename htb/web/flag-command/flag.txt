@@ -1,0 +1,8 @@
+Solved.
+
+The hidden command from /api/options (secret) directly returns the flag when sent to /api/monitor:
+
+Command:
+Blip-blop, in a pickle with a hiccup! Shmiggity-shmack
+Flag:
+HTB{D3v3l0p3r_t00l5_4r3_b35t_wh4t_y0u_Th1nk??!_6acf91d1d3c185505ad1787825803620}

@@ -1,0 +1,1 @@
+python3 -c "print(''.join([chr(ord(c)>>8) + chr(ord(c)&0xff) for c in open('enc').read()]))"

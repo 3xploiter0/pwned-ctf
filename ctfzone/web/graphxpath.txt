@@ -1,0 +1,12 @@
+Flag: `CTFZone{I_hate_when_yall_hate_blind_thats_why_I_presented_a_weird_long_flag_sorry_for_stressing_you}`
+
+Where it was:
+- hidden in the XML backing the GraphQL resolver
+- specifically under the second top-level child of the `catalog` root, inside its only child node
+- I extracted it through the XPath injection in `book(id: String!)`
+
+Why it worked:
+- `book(id:"\" or \"1\"=\"1")` returned the first book, which confirmed the resolver was building an unsafe XPath predicate
+- from there I used blind predicates against `string(/*[1]/*[2]/*[1])` to recover the hidden text character by character
+
+If you want, I can turn this one into a short clean writeup too.

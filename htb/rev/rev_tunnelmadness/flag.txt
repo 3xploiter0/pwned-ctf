@@ -1,0 +1,10 @@
+Flag: `HTB{tunn3l1ng_ab0ut_in_3d_4c34ee571e64378036bb0bfc0d667c1e}`
+
+The binary is a 20x20x20 3D maze solver. Start is `(0,0,0)`, walls are cells with type `2`, and the exit is `(19,19,19)` with type `3`. The valid move mapping is `L=x-`, `R=x+`, `B=y-`, `F=y+`, `D=z-`, `U=z+`.
+
+Solve sequence:
+```text
+UUURFURURRFRRFFUUFURRUFUFFRFUFUUUUFFRRUUUFURFDFFUFFRRRRRFRR
+```
+
+I verified that sequence locally against `./tunnel` and then submitted it to the remote service to recover the real flag.

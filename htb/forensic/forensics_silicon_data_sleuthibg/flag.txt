@@ -1,0 +1,13 @@
+Flag is `HTB{Y0u'v3_m4st3r3d_0p3nWRT_d4t4_3xtr4ct10n!!_2706b59aa1f4d4c56269cd522b091c72}`.
+
+I verified it against the live socket. The values that solved it were:
+- OpenWrt version: `23.05.0` from [banner](/tmp/silicon_sleuth/squashfs-root/etc/banner#L7)
+- Kernel version: `5.15.134` from the `uImage` header in [chal_router_dump.bin](/home/mfekenyuzi/htb/forensic/forensics_silicon_data_sleuthibg/chal_router_dump.bin)
+- Root hash line: `root:$1$YfuRJudo$cXCiIJXn9fWLIt8WY2Okp1:19804:0:99999:7:::` from [#32](/tmp/silicon_sleuth/jefferson/work/work/%2332#L1)
+- PPPoE username: `yohZ5ah` from [network](/tmp/silicon_sleuth/jefferson/work/work/%234/network#L28)
+- PPPoE password: `ae-h+i$i^Ngohroorie!bieng6kee7oh` from [network](/tmp/silicon_sleuth/jefferson/work/work/%234/network#L29)
+- WiFi SSID: `VLT-AP01` from [wireless](/tmp/silicon_sleuth/jefferson/work/work/%234/wireless#L15)
+- WiFi password: `french-halves-vehicular-favorable` from [wireless](/tmp/silicon_sleuth/jefferson/work/work/%234/wireless#L17)
+- WAN forwarded ports: `1778,2289,8088` from [#b](/tmp/silicon_sleuth/jefferson/work/work/%23b#L127)
+
+The key step was extracting the JFFS2 overlay, not just the base SquashFS. That overlay contained the live `shadow` entry and the modified network, wireless, and firewall configs.

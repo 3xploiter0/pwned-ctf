@@ -1,0 +1,151 @@
+HTB{547311173_n37w02k_c0mp20m153d}
+
+I decoded the .sal capture as UART on RX (channel 1) with 115200, 8N1, non-inverted.
+From the boot log text, the interference source is the swarm ("The satellite dish can not sync with the swarm").
+
+
+
+
+Use this script:
+
+```python
+#!/usr/bin/env python3
+import argparse
+import bisect
+import csv
+import re
+import tempfile
+from pathlib import Path
+
+from saleae import automation
+
+
+def export_digital_csv_from_sal(sal_path: Path, appimage_path: Path, out_dir: Path) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    with automation.Manager.launch(
+        application_path=str(appimage_path),
+        connect_timeout_seconds=30.0,
+    ) as manager:
+        cap = manager.load_capture(str(sal_path.resolve()))
+        cap.export_raw_data_csv(str(out_dir.resolve()))
+        cap.close()
+    return out_dir / "digital.csv"
+
+
+def decode_uart(digital_csv: Path, channel_name: str, baud: int, bits: int = 8) -> str:
+    rows = []
+    with digital_csv.open() as f:
+        r = csv.reader(f)
+        header = next(r)
+        try:
+            ch_idx = header.index(channel_name)
+        except ValueError:
+            raise RuntimeError(f"Channel '{channel_name}' not found. Available: {header}")
+
+        for row in r:
+            rows.append((float(row[0]), int(row[ch_idx])))
+
+    times = [t for t, _ in rows]
+    vals = [v for _, v in rows]
+    bit_time = 1.0 / baud
+
+    def state_at(t: float) -> int:
+        i = bisect.bisect_right(times, t) - 1
+        if i < 0:
+            return vals[0]
+        return vals[i]
+
+    out = []
+    i = 1
+    n = len(rows)
+
+    while i < n:
+        t_prev, v_prev = rows[i - 1]
+        t, v = rows[i]
+
+        # Start bit: idle high -> low
+        if v_prev == 1 and v == 0:
+            if state_at(t + 0.5 * bit_time) != 0:
+                i += 1
+                continue
+
+            b = 0
+            for bit in range(bits):
+                sv = state_at(t + (1.5 + bit) * bit_time)
+                b |= (sv & 1) << bit
+
+            # Stop bit check (1 stop bit)
+            if state_at(t + 9.5 * bit_time) == 1:
+                out.append(b)
+                frame_end = t + 10.0 * bit_time
+                i = bisect.bisect_left(times, frame_end)
+                continue
+
+        i += 1
+
+    return "".join(chr(x) for x in out)
+
+
+def extract_flag(text: str) -> str | None:
+    m = re.search(r"HTB\{[^\r\n}]*\}", text)
+    if m:
+        return m.group(0)
+
+    # Handles split flag style used in this challenge
+    if "HTB{" in text:
+        codes = re.findall(r"reference code:\s*([A-Za-z0-9_]+)", text)
+        if len(codes) >= 3:
+            return f"HTB{{{codes[0]}{codes[1]}{codes[2]}}}"
+
+    return None
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("input_path", help=".sal file or digital.csv")
+    p.add_argument("--appimage", help="Path to Logic 2 AppImage (required for .sal input)")
+    p.add_argument("--channel", default="RX", help="CSV channel column name (default: RX)")
+    p.add_argument("--baud", type=int, default=115200)
+    p.add_argument("--out-text", default="decoded_uart.txt")
+    args = p.parse_args()
+
+    input_path = Path(args.input_path)
+
+    if input_path.suffix.lower() == ".sal":
+        if not args.appimage:
+            raise RuntimeError("--appimage is required when input is .sal")
+        with tempfile.TemporaryDirectory() as td:
+            digital_csv = export_digital_csv_from_sal(input_path, Path(args.appimage), Path(td))
+            text = decode_uart(digital_csv, args.channel, args.baud)
+    else:
+        text = decode_uart(input_path, args.channel, args.baud)
+
+    Path(args.out_text).write_text(text, encoding="utf-8")
+    print(f"[+] Decoded text written to {args.out_text}")
+
+    flag = extract_flag(text)
+    if flag:
+        print(f"[+] Flag: {flag}")
+    else:
+        print("[-] Flag not found automatically.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Install dependency:
+
+```bash
+pip install logic2-automation
+```
+
+Run on your challenge:
+
+```bash
+python3 solve_hw_debug.py challenge/hw_debug.sal \
+  --appimage /tmp/Logic-2.4.43-linux-x64.AppImage \
+  --channel RX \
+  --baud 115200
+```
+Stop Drop and Roll: HTB{1_wiLl_sT0p_dR0p_4nD_r0Ll_mY_w4Y_oUt!}

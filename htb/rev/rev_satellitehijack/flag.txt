@@ -1,0 +1,15 @@
+Flag: `HTB{l4y3r5_0n_l4y3r5_0n_l4y3r5!}`
+
+The trick is in [`library.so`](/home/mfekenyuzi/htb/rev/rev_satellitehijack/library.so), not the front-end [`satellite`](/home/mfekenyuzi/htb/rev/rev_satellitehijack/satellite). `satellite` is sabotaged to call `read(1, ...)`, but the library’s IFUNC resolver checks `SAT_PROD_ENVIRONMENT`, decrypts a hidden code blob, and patches the process’s `read` GOT entry. That hidden handler scans input for `HTB{...}` and validates the bytes after `HTB{` with:
+
+```text
+candidate[i] ^ key[i] == i
+```
+
+Solving that XOR-by-index check gives the suffix:
+
+```text
+l4y3r5_0n_l4y3r5_0n_l4y3r5!}
+```
+
+So the canonical flag is the single-brace form above.

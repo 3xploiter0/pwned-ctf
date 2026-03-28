@@ -1,0 +1,5 @@
+Flag: HTB{h4sh_c0ll1s10n_t0_br1ng_b4ck_d3m0cr4cy}
+
+The bug is in getVoterSig() using abi.encodePacked(_name, _surname). The setup preloads ("Satoshi","Nakamoto") with 100 ether, and we can collide that signature with a different split like ("SatoshiNakamot","o"). uniqueVoters treats that as a fresh voter, but voters[voterSig] resolves to the same stored weight, so each vote is worth 100e18. Since the contract never marks a voter as spent, ten repeated votes for CIM solve it.
+
+I saved a reproducible exploit script at solve.py. Running it against the live instance set isSolved() to true and the launcher returned the flag.

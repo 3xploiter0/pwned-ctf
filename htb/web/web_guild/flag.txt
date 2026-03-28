@@ -1,0 +1,15 @@
+Flag:
+
+HTB{mult1pl3_lo0p5_mult1pl3_h0les_bfdcd6aecb8f8a83e08f7dcc25fa2a8b}
+
+Exploit chain I used:
+
+Register/login as normal user.
+Upload a JPEG in /verification with EXIF Artist set to SSTI payload.
+Set bio to SSTI payload {{User.query.filter_by(username='admin').first().email}}, call /getlink, then visit /user/<your_username> to leak admin email.
+Reset admin password via /forgetpassword + predictable link /changepasswd/<sha256(admin_email)>.
+Login as admin, open /admin, submit /verify for your pending verification row.
+EXIF SSTI executes and returns flag in response.
+Key vulnerable code is in views.py.
+
+python3 solve_guild.py --url http://154.57.164.66:31567 --verbose

@@ -1,0 +1,15 @@
+password: A
+length: 80
+
+program trusted 
+print 80 bytes from memory
+you leaked the memory
+
+105 85 98 104 56 49 33 106 42 104 110 33
+↓
+iUbh81!j*hn!
+
+run this locally
+105 85 98 104 56 49 33 106 42 104 110 33
+↓
+iUbh81!j*hn!

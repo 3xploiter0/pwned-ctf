@@ -1,0 +1,4 @@
+password: tvadmin123
+passphrase for monochrome.png is maryadmin1
+
+urchinsec{0n3P13c3T0Th3w0rld}

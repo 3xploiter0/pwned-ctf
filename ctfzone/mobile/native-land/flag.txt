@@ -1,0 +1,3 @@
+ctfzone{libnative_1s_n0t_always_s4f3}
+
+echo 'pgsmbar{yvoangvir_1f_a0g_nyjnlf_f4s3}' | tr 'A-Za-z' 'N-ZA-Mn-za-m'

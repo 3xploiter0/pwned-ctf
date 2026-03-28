@@ -1,0 +1,6 @@
+printf '1111111111101001\n' | nc -w 5 154.57.164.83 30532
+Service response includes:
+You triggered the backdoor here is the flag: HTB{4_7yp1c41_53cu23_TPM_ch1p}
+
+Flag:
+HTB{4_7yp1c41_53cu23_TPM_ch1p}

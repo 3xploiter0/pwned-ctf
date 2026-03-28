@@ -1,0 +1,12 @@
+bandit0-1 = ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+bandit1-2 = 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+bandit2-3 = MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+bandit3-4 = 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+bandit4-5 = 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+bandit5-6 = HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+bandit6-7 = morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+bandit7-8 = dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+bandit8-9 = 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+bandit9-10 = FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+

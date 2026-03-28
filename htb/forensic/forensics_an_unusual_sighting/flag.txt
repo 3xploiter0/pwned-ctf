@@ -1,0 +1,11 @@
+Flag is `HTB{4n_unusual_s1ght1ng_1n_SSH_l0gs!}`.
+
+The answers that solved the socket were:
+- SSH server: `100.107.36.130:2221` from [sshd.log](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/sshd.log#L3)
+- First successful login: `2024-02-13 11:29:50` from [sshd.log](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/sshd.log#L11)
+- Unusual login: `2024-02-19 04:00:14` from [sshd.log](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/sshd.log#L37)
+- Attacker key fingerprint: `OPkBSs6okUKraq8pYo4XwwBg55QSo210F09FCe1-yj4` from [sshd.log](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/sshd.log#L38)
+- First attacker command: `whoami` from [bash_history.txt](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/bash_history.txt#L22)
+- Final attacker command: `./setup` from [bash_history.txt](/home/mfekenyuzi/htb/forensic/forensics_an_unusual_sighting/forensics_an_unusual_sighting/bash_history.txt#L30)
+
+I verified these against your live challenge socket and it returned the flag.

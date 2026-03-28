@@ -1,0 +1,10 @@
+Enumerate Modbus custom packets:
+tshark -r traffic.pcapng -Y 'modbus.func_code==102' -T fields -e frame.number -e modbus.data
+Decode frame 34 payload 006f70657261746f72 -> operator (password clue).
+Decode frame 35 payload:
+printf '2e4854427b35306d3337316d33355f63753537306d5f70323037306330315f3432335f6e30375f336e30753968377d' | xxd -r -p
+Output:
+.HTB{50m371m35_cu570m_p2070c01_423_n07_3n0u9h7}
+
+Flag to submit:
+HTB{50m371m35_cu570m_p2070c01_423_n07_3n0u9h7}

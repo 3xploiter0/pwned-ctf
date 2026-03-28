@@ -1,0 +1,7 @@
+NorthBridge Analytics detected unusual outbound network activity from one of their internal web servers during off-hours.No alerts were triggered, but traffic logs suggest that sensitive data may have been quietly extracted.
+
+You are given a network capture taken during the suspected incident. Analyze the traffic to uncover how the breach occurred and what information was stolen.
+
+Format:
+
+ctfzone{ATTACKERIP_VICTIMIP_(db_user)_(db_pass)}

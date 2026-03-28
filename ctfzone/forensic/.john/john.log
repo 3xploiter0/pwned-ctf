@@ -1,0 +1,43 @@
+1 0:00:00:00 Starting a new session
+1 0:00:00:00 Loaded a total of 1 password hash
+1 0:00:00:00 - Node numbers 1-4 of 4 (fork)
+1 0:00:00:00 Command line: john --format=PKZIP --wordlist=quick_candidates.txt mono.hash --pot=mono.pot --fork=4 --verbosity=2 
+1 0:00:00:00 - UTF-8 input encoding enabled
+1 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+1 0:00:00:00 - Hash type: PKZIP (min-len 0, max-len 21 [worst case UTF-8] to 63 [ASCII])
+1 0:00:00:00 - Algorithm: 32/64
+1 0:00:00:00 - Will reject candidates longer than 63 bytes
+1 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 4096
+3 0:00:00:00 Session completed
+2 0:00:00:00 Session completed
+4 0:00:00:00 Session completed
+1 0:00:00:00 Proceeding with wordlist mode
+1 0:00:00:00 - Wordlist file: quick_candidates.txt
+1 0:00:00:00 - memory mapping wordlist (163 bytes)
+1 0:00:00:00 - No word mangling rules
+1 0:00:00:00 - No stacked rules
+1 0:00:00:00 - Will distribute words across nodes
+1 0:00:00:00 Waiting for 3 children to terminate
+1 0:00:00:00 Session completed
+1 0:00:00:00 Starting a new session
+1 0:00:00:00 Loaded a total of 1 password hash
+1 0:00:00:00 - Node numbers 1-4 of 4 (fork)
+1 0:00:00:00 Command line: john --format=PKZIP --wordlist=/usr/share/wordlists/rockyou.txt mono.hash --pot=mono.pot --fork=4 
+1 0:00:00:00 - UTF-8 input encoding enabled
+1 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+1 0:00:00:00 - Hash type: PKZIP (min-len 0, max-len 21 [worst case UTF-8] to 63 [ASCII])
+1 0:00:00:00 - Algorithm: 32/64
+1 0:00:00:00 - Will reject candidates longer than 63 bytes
+1 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 4096
+1 0:00:00:00 Proceeding with wordlist mode
+1 0:00:00:00 - Wordlist file: /usr/share/wordlists/rockyou.txt
+1 0:00:00:00 - memory mapping wordlist (139921507 bytes)
+1 0:00:00:00 - No word mangling rules
+1 0:00:00:00 - No stacked rules
+1 0:00:00:00 - Will distribute words across nodes
+1 0:00:00:00 + Cracked mono.zip/monochrome.png
+1 0:00:00:00 Waiting for 3 children to terminate
+3 0:00:00:00 Session completed
+2 0:00:00:00 Session completed
+4 0:00:00:00 Session completed
+1 0:00:00:00 Session completed
