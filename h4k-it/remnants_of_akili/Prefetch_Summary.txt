@@ -1,0 +1,26 @@
+PECmd v1.4.0.0 — Prefetch File Analysis
+Processed: C:\Windows\Prefetch\
+Workstation: AKILI-WKSTN007
+OS Version: Windows 10 Pro 22H2 (19045.3803)
+Report generated: 2024-11-19 09:12:44 UTC
+
+Executable                                         RunCount   LastRun (UTC)                PrefetchHash
+--------------------------------------------------------------------------------------------------------------
+CHROME.EXE                                         312        2024-11-18 17:43:58          F6A3C128
+CODE.EXE                                           88         2024-11-18 14:11:43          2A9D4E51
+CMD.EXE                                            145        2024-11-18 08:44:12          8C3B7F91
+PYTHON.EXE                                         61         2024-11-18 09:02:34          D1E82A44
+GIT.EXE                                            74         2024-11-18 08:44:10          4F6C9B32
+EXPLORER.EXE                                       1          2024-11-18 07:58:55          A3D7E214
+NOTEPAD.EXE                                        29         2024-11-18 11:22:08          6B1D93AF
+MSIEXEC.EXE                                        3          2024-11-15 11:04:51          C82A51FE
+WDH.EXE                                            7          2024-11-18 02:33:21          4B9F2A1E
+POWERSHELL.EXE                                     23         2024-11-18 02:34:17          A8C31F56
+SVCHOST.EXE                                        1          2024-11-18 07:58:43          E74C2098
+WERFAULT.EXE                                       2          2024-11-17 16:22:38          5D3A8B62
+TASKMGR.EXE                                        4          2024-11-15 15:07:19          1F9C4E87
+
+NOTE: WDH.EXE located at C:\Users\dev001\AppData\Local\Temp\WDH\
+      Not a known system binary. POWERSHELL.EXE spawned 1s after WDH.EXE — review Event Log.
+
+Files processed: 13 | Duration: 0.412s

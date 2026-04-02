@@ -1,0 +1,31 @@
+# Nuru Networks — DNS Resolver Query Log
+# Resolver: ns1.nuru-networks.ug (10.20.0.10)
+# Log period: 2024-11-20 03:00:00 UTC to 2024-11-20 03:08:44 UTC
+# Maintenance window: 03:00 - 03:30 UTC | Vendor: NetVance Solutions Ltd
+
+2024-11-19T23:00:02.000Z named[1234]: client 10.20.15.42 query: google.com IN A
+2024-11-19T23:00:05.000Z named[1234]: reply google.com is 142.250.185.46
+2024-11-19T23:00:06.000Z named[1234]: client 10.20.15.42 query: api.safaricom.co.ke IN A
+2024-11-19T23:00:07.000Z named[1234]: reply api.safaricom.co.ke is 196.201.212.21
+2024-11-19T23:00:09.000Z named[1234]: client 10.20.15.42 query: mails.nuru-networks.ug IN A
+2024-11-19T23:00:10.000Z named[1234]: reply mails.nuru-networks.ug is 41.86.102.4
+2024-11-19T23:00:13.000Z named[1234]: client 10.20.15.42 query: cdn.cloudflare.com IN A
+2024-11-19T23:00:14.000Z named[1234]: reply cdn.cloudflare.com is 104.18.27.100
+2024-11-19T23:00:18.000Z named[1234]: client 10.20.15.42 query: gateway.pesalink.co.tz IN A
+2024-11-19T23:00:19.000Z named[1234]: reply gateway.pesalink.co.tz is 41.220.117.66
+2024-11-19T23:00:24.000Z named[1234]: client 10.20.15.42 query: updates.ubuntu.com IN A
+2024-11-19T23:00:25.000Z named[1234]: reply updates.ubuntu.com is 91.189.91.83
+2024-11-19T23:00:28.000Z named[1234]: client 10.20.15.42 query: smtp.google.com IN A
+2024-11-19T23:00:29.000Z named[1234]: reply smtp.google.com is 142.250.185.27
+2024-11-19T23:00:35.000Z named[1234]: client 10.20.15.42 query: syn.b7a3f2d1.tunnel.akili-noc.co.tz IN TXT
+2024-11-19T23:00:36.000Z named[1234]: forwarding query to authoritative NS 10.44.0.55
+2024-11-19T23:00:37.000Z named[1234]: client 10.20.15.42 query: 0000.redacted00xxxxxxxxxxxxxxxxxxxx.b7a3f2d1.tunnel.akili-noc.co.tz IN TXT
+2024-11-19T23:00:38.000Z named[1234]: forwarding query to authoritative NS 10.44.0.55
+2024-11-19T23:00:40.000Z named[1234]: client 10.20.15.42 query: fin.b7a3f2d1.tunnel.akili-noc.co.tz IN TXT
+2024-11-19T23:00:41.000Z named[1234]: forwarding query to authoritative NS 10.44.0.55
+2024-11-19T23:00:50.000Z named[1234]: client 10.20.15.42 query: imap.gmail.com IN A
+2024-11-19T23:00:51.000Z named[1234]: reply imap.gmail.com is 142.250.185.20
+2024-11-19T23:00:53.000Z named[1234]: client 10.20.15.42 query: nuru-networks.ug IN A
+2024-11-19T23:00:54.000Z named[1234]: reply nuru-networks.ug is 41.86.99.1
+2024-11-19T23:00:56.000Z named[1234]: client 10.20.15.42 query: api.mpesa.co.ke IN A
+2024-11-19T23:00:57.000Z named[1234]: reply api.mpesa.co.ke is 196.201.212.58

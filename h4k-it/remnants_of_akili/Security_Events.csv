@@ -1,0 +1,17 @@
+TimeCreated,EventID,EventName,Level,UserName,LogonType,ProcessName,ParentProcessName,TargetAccount,Message
+2024-11-18 02:31:48,4624,Logon,Information,AKILI-ANALYTICS\dev001,2,,,dev001,An account was successfully logged on.
+2024-11-18 02:31:49,4624,Logon,Information,AKILI-ANALYTICS\dev001,5,C:\Windows\System32\services.exe,,dev001,An account was successfully logged on. (Service)
+2024-11-18 02:33:21,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Users\dev001\AppData\Local\Temp\WDH\wdh.exe,C:\Windows\explorer.exe,,A new process has been created.
+2024-11-18 02:34:17,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,C:\Users\dev001\AppData\Local\Temp\WDH\wdh.exe,,A new process has been created.
+2024-11-18 02:34:18,4656,Object Access,Information,AKILI-ANALYTICS\dev001,,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,,,A handle to an object was requested.
+2024-11-18 02:36:54,4634,Logoff,Information,AKILI-ANALYTICS\dev001,,,,dev001,An account was logged off.
+2024-11-18 07:58:42,4624,Logon,Information,AKILI-ANALYTICS\dev001,2,,,dev001,An account was successfully logged on.
+2024-11-18 07:59:01,4798,User local group enum,Information,AKILI-ANALYTICS\dev001,,C:\Windows\System32\svchost.exe,,dev001,A user's local group membership was enumerated.
+2024-11-18 08:12:55,4624,Logon,Information,AKILI-ANALYTICS\dev001,3,,,dev001,An account was successfully logged on. (Network)
+2024-11-18 08:44:12,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Windows\System32\cmd.exe,C:\Program Files\Git\bin\git.exe,,A new process has been created.
+2024-11-18 09:02:34,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Program Files\Python311\python.exe,C:\Windows\System32\cmd.exe,,A new process has been created.
+2024-11-18 11:22:08,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Windows\System32\notepad.exe,C:\Windows\explorer.exe,,A new process has been created.
+2024-11-18 12:31:00,4634,Logoff,Information,AKILI-ANALYTICS\dev001,,,,dev001,An account was logged off.
+2024-11-18 13:05:19,4624,Logon,Information,AKILI-ANALYTICS\dev001,2,,,dev001,An account was successfully logged on.
+2024-11-18 14:11:43,4688,Process Create,Information,AKILI-ANALYTICS\dev001,,C:\Program Files\Microsoft VS Code\Code.exe,C:\Windows\explorer.exe,,A new process has been created.
+2024-11-18 17:44:02,4634,Logoff,Information,AKILI-ANALYTICS\dev001,,,,dev001,An account was logged off.
