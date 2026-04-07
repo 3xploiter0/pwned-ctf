@@ -1,0 +1,17 @@
+[Evidence 1] Nmap
+PORT      STATE SERVICE VERSION
+33222/tcp open  http    Gunicorn
+
+[Evidence 2] Homepage clue
+"Malware-analysis artifact: /static/js/analytics.js is available for static review."
+
+[Evidence 3] Suspicious JS tail
+(function(_a,_r){var _fn=function(_n){while(--_n){_a.push(_a.shift());}};_fn(++_r);})(_0x3f2a,0x0c);
+var _0xb891=function(){return _0x3f2a.join('');};
+eval(atob(_0xb891()));
+
+[Evidence 4] Flag-bearing base64 token fragment
+R29Ie2MwMGQwNTEwMTE1Y30i
+
+[Evidence 5] Decoded output
+GoH{c00d0510115c}"

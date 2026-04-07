@@ -1,0 +1,22 @@
+[Evidence 1] Nmap
+PORT      STATE SERVICE VERSION
+33223/tcp open  http    Gunicorn
+
+[Evidence 2] robots.txt
+User-agent: *
+Disallow: /internal/
+Disallow: /files
+
+[Evidence 3] /internal/ HTML comments
+<!-- build: rev umoja-build-rev-2024-11-01 -->
+<!-- cache_ref: .sys_update_cache -->
+<!-- module_ver: 1.4 -->
+
+[Evidence 4] /files endpoint behavior
+/files -> 400
+/files?file=.sys_update_cache -> 400
+/files?path=.sys_update_cache -> 400
+/files?name=.sys_update_cache -> 200
+
+[Evidence 5] Decrypted config field
+"auth_key": "GoH{26715762d481}"
